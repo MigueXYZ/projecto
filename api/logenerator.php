@@ -46,4 +46,4 @@ fclose($file);
 
 
 
-header("Location: http://localhost/projecto/projecto/dashboard.php");
+header("Location: ../dashboard.php");
