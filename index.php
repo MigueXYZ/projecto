@@ -23,12 +23,12 @@ if(isset($_POST['username']) && isset($_POST['password'])){
             //compara o username para ver se faz par
             if(strcmp(trim($username[$i]),$_POST['username'])==0){
                 //catalogar o login ,criar uma sessão e redirecionar
-                logAttempt(SUCESSO,$username);
+                logAttempt(SUCESSO,$username[$i]);
                 $_SESSION['username']=$_POST['username'];
                 header("Location:dashboard.php");
             }else{
                 //catalogar a tentativa de login
-                logAttempt(INSUCESSO,$username);
+                logAttempt(INSUCESSO,$username[$i]);
             }
         }
     }
