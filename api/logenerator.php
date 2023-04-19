@@ -16,4 +16,4 @@ $file = fopen($file_path, 'a');
 fwrite($file, $timestamp . "\n");
 fclose($file);
 
-header("Location: http://localhost/TI-MASTER/projecto/dashboard.php");
+header("Location: http://localhost/projecto/projecto/dashboard.php");
