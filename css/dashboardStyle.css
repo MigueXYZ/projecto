@@ -1,12 +1,46 @@
-.sensor{
-    background-color: #93baff;
-}
-
-.atuador{
-    background-color: #ffbf6c;
-}
-
 .photo{
     width: 200px;
     height: 200px;
+}
+.body-park{
+    background-image: url('../imagens/background.jpeg');
+    background-size: cover;
+}
+
+.body-park::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.05); /* Fallback color */
+    filter: blur(5px); /* Fallback blur */
+}
+
+.card-theme{
+    opacity:0.8;
+}
+
+.sensor-light-green{
+    background-color: lightgreen;
+}
+
+.sensor-green{
+    background-color:lime;
+}
+.sensor-yellow{
+    background-color:yellow;
+}
+.sensor-orange{
+    background-color:orange;
+}
+.sensor-red{
+    background-color:red;
+}
+.sensor-gray{
+    background-color: lightgray;
+}
+.sensor{
+    background-color:deepskyblue;
 }

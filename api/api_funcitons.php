@@ -3,6 +3,8 @@
 const SUCESSO = 1;
 const INSUCESSO = 0;
 const VEICULO_MAX=100;
+const DESATIVADO=0;
+const ATIVADO=1;
 //função para buscar os utilizadores
 function getUsers(){
     return (explode("\n", file_get_contents('api/files/users/users.txt')));
@@ -45,5 +47,20 @@ function getVeiculoLog(){
 
 //função para buscar o estado das luzes
 function getLuzesEstado(){
-    return(file_get_contents("api/files/veiculo/estado.txt"));
+    return(file_get_contents("api/files/luzes/estado.txt"));
 }
+//função para buscar a hora da ultima atualização das luzes
+function getLuzesHora(){
+    return(file_get_contents("api/files/luzes/hora.txt"));
+}
+//função para buscar o nome das luzes
+function getLuzesNome(){
+    return(file_get_contents("api/files/luzes/nome.txt"));
+}
+
+//função para buscar o log das luzes
+function getLuzesLog(){
+    return(file_get_contents("api/files/luzes/log.txt"));
+}
+
+//funções para buscar informações relevantes

@@ -14,22 +14,40 @@
     $veiculo_quant=getVeiculoQuant();
     $veiculo_hora=getVeiculoHora();
     $veiculo_nome=getVeiculoNome();
-
+    $luzes_nome=getLuzesNome();
+    $luzes_hora=getLuzesHora();
+    $luzes_estado=trim(getLuzesEstado());
+    //lógica para definir qual imagem//cor sar para os veiculos
     $percentagem=$veiculo_quant/VEICULO_MAX;
     if($percentagem<=0.1){
         $veiculo_foto="imagens/emptyParkingLot.png";
+        $veiculo_cor="sensor-light-green";
     }elseif($percentagem<=0.35){
         $veiculo_foto="imagens/HalfEmptyParkinglot.png";
+        $veiculo_cor="sensor-green";
     }elseif($percentagem<=0.6){
         $veiculo_foto="imagens/halfParkinglot.png";
+        $veiculo_cor="sensor-yellow";
     }elseif($percentagem<=0.85){
         $veiculo_foto="imagens/halfFullParkinglot.png";
+        $veiculo_cor="sensor-orange";
     }else{
         $veiculo_foto="imagens/fullParkingLot.png";
+        $veiculo_cor="sensor-red";
     }
 
-    $luzes_foto="imagens/light-off.png";
-    $luzes_foto="imagens/light-on.png";
+    //lógica para definir qual imagem//cor sar para as luzes
+    if($luzes_estado==DESATIVADO){
+        $luzes_foto="imagens/light-off.png";
+        $luzes_cor="sensor-gray";
+        $luzes_estado="Desativado";
+    }
+    elseif ($luzes_estado==ATIVADO){
+        $luzes_foto="imagens/light-on.png";
+        $luzes_cor="sensor-yellow";
+        $luzes_estado="Ativado";
+    }
+
 
 //apagar depois
     $valor_temperatura = file_get_contents("api/files/temperatura/valor.txt");
@@ -46,11 +64,11 @@
     <title>Plataforma IoT</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="css/dashboardStyle.css">
-      <meta http-equiv="refresh" content="5">
+      <meta http-equiv="refresh" content="5;url=http://localhost/TI-MASTER/projecto/api/logenerator.php">
 </head>
-  <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <body class="body-park">
+    <div class="container card-theme">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary mb-2 rounded-bottom ">
             <div class="container-fluid">
                 <a class="navbar-brand">Dashboard Parque Inteligente</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,17 +91,16 @@
                     <div class="col">
                         <h1 class="h1">Parque Inteligente</h1>
                         <p>Bem vindo<b> <?php echo($_SESSION['username']) ?></b> </p>
-                        <p>Tecnologias de Internet - Engenharia Informática</p>
                     </div>
                     <div class="col">
-                        <img class="float-end d-inline" style="width:300px;" src="imagens/estg.png" alt="estg">
+                        <img class="float-end d-inline" style="width:250px;" src="imagens/estg.png" alt="estg">
                     </div>
                 </div>
             </div>
           </div>
     </div>
     
-    <div class="container p-3">
+    <div class="container p-3 card-theme">
         <div class="row text-center">
             <div class="col-sm-4">
                 <div class="card">
@@ -91,7 +108,7 @@
                         <h2><?php echo $nome.": ".$valor_temperatura . "ºC"; ?></h2>
                     </div>
                     <div class="card-body">
-                      <img class="align-center" src="imagens/temperature-high.png" alt="Temperatura">
+                      <img class="align-center photo" src="imagens/temperature-high.png" alt="Temperatura">
                     </div>
                     <div class="card-footer">
                         <b>Atualização:</b> <?php echo $hora_temperatura; ?> - <a href="#">Histórico</a>
@@ -100,7 +117,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="card">
-                    <div class="card-header sensor">
+                    <div class="card-header <?php echo($veiculo_cor)?>">
                       <h2><?php echo($veiculo_nome.": ".$veiculo_quant) ?></h2>
                     </div>
                     <div class="card-body">
@@ -113,8 +130,8 @@
             </div>
             <div class="col-sm-4">
                 <div class="card">
-                    <div class="card-header atuador">
-                        <h2>Luzes: Ativas</h2>
+                    <div class="card-header <?php echo($luzes_cor) ?>">
+                        <h2><?php echo($luzes_nome.": ".$luzes_estado)?></h2>
                     </div>
                     <div class="card-body">
                         <img class="align-center photo" src="<?php echo($luzes_foto)?>" alt="LED">
@@ -125,49 +142,6 @@
                   </div>
             </div>
         </div>
-        <!--
-        <div class="row mt-10">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="class-header">
-                        <h3>Tabela de Sensores</h3>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Tipo de Dispositivo IoT</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Data de Atualização</th>
-                                <th scope="col">Estado/Alertas</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td scope="row"><?php echo $nome;?></td>
-                                <td><?php echo $valor_temperatura;?> </td>
-                                <td><?php echo $hora_temperatura;?></td>
-                                <td><span class="badge text-bg-danger"> Elevada </span></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Humidade</td>
-                                <td>70%</td>
-                                <td>2023/03/10 14:31</td>
-                                <td><span class="badge text-bg-primary"> Normal</span></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Led Arduino</td>
-                                <td>Ligado</td>
-                                <td>2023/03/10 14:31</td>
-                                <td><span class="badge text-bg-success"> Ativo</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
