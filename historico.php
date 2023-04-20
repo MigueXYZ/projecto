@@ -3,7 +3,7 @@ include_once("api/api_funcitons.php");
 //começa uma sessão
 session_start();
 //se o username não existir na sessão
-if (!isset($_SESSION['username']) || !isset($_GET['log'])) {
+if (!isset($_SESSION['username'])) {
     //vai para index.php
     header("refresh:5;url=index.php");
     //mostra ACESSO RESTRITO
@@ -11,6 +11,12 @@ if (!isset($_SESSION['username']) || !isset($_GET['log'])) {
     //acaba o if
     //<meta http-equiv="refresh" content="5">
 }
+if(!isset($_GET['log'])){
+    $aux=TODOS;
+}else{
+    $aux=$_GET['log'];
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -49,7 +55,7 @@ if (!isset($_SESSION['username']) || !isset($_GET['log'])) {
         </nav>
                 <?php
                 //escolher que logs mostrar
-                if ($_GET['log'] == CAMARA || $_GET['log'] == TODOS) {
+                if ($aux == CAMARA || $aux == TODOS) {
                     echo('<div class="card card-theme m-2"><div class="card-body">');
                     $log = getFotosLog();
                     echo('<table class="table">
@@ -67,7 +73,7 @@ if (!isset($_SESSION['username']) || !isset($_GET['log'])) {
                     }
                     //imprimir a informação dos logs
                     foreach ($log_array as $entry) {
-                        echo("<tr><td>" . $entry[0] . "</td><td><a href='image.php?image=imageLogs/" . $entry[1] . "&log=" . $_GET['log'] . "' target='_self'>" . $entry[1] . "</a></td></tr>");
+                        echo("<tr><td>" . $entry[0] . "</td><td><a href='image.php?image=imageLogs/" . $entry[1] . "&log=" . $aux . "' target='_self'>" . $entry[1] . "</a></td></tr>");
                     }
                     echo('   </tbody>
                 </table>
@@ -75,7 +81,7 @@ if (!isset($_SESSION['username']) || !isset($_GET['log'])) {
                     echo('</div></div>');
                 }
 
-                if ($_GET['log'] == LUZES || $_GET['log'] == TODOS) {
+                if ($aux == LUZES || $aux == TODOS) {
                     echo('<div class="card card-theme m-2"><div class="card-body">');
                     $log = getLuzesLog();
                     echo('<table class="table">
@@ -105,7 +111,7 @@ if (!isset($_SESSION['username']) || !isset($_GET['log'])) {
                     echo('</div></div>');
                 }
 
-                if ($_GET['log'] == CONTADOR || $_GET['log'] == TODOS) {
+                if ($aux == CONTADOR || $aux == TODOS) {
                     echo('<div class="card card-theme m-2"><div class="card-body">');
                     $log = getVeiculoLog();
                     echo('<table class="table">
