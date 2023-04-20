@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])) {
     //mostra ACESSO RESTRITO
     die("Acesso Restrito.");
     //acaba o if
-    //<meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="5">
 }
 if(!isset($_GET['log'])){
     $aux=TODOS;
