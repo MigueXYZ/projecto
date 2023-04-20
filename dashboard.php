@@ -17,6 +17,10 @@
     $luzes_nome=getLuzesNome();
     $luzes_hora=getLuzesHora();
     $luzes_estado=trim(getLuzesEstado());
+    $fotos_atual=getFotosAtual();
+    $fotos_hora=getFotosHora();
+    $fotos_nome=getFotosNome();
+
     //lógica para definir qual imagem//cor sar para os veiculos
     $percentagem=$veiculo_quant/VEICULO_MAX;
     if($percentagem<=0.1){
@@ -47,14 +51,6 @@
         $luzes_cor="sensor-yellow";
         $luzes_estado="Ativado";
     }
-
-
-//apagar depois
-    $valor_temperatura = file_get_contents("api/files/temperatura/valor.txt");
-    $hora_temperatura=file_get_contents("api/files/temperatura/hora.txt");
-    $nome=file_get_contents("api/files/temperatura/nome.txt");
-
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -77,7 +73,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" href="#">Histórico</a>
+                        <a class="nav-link" href="historico.php?log=<?php echo TODOS;?>">Histórico</a>
                     </div>
                     <div class="w-100 text-end">
                         <button class="btn btn-outline-danger" type="" onclick="window.location.replace('logout.php');">Logout</button>
@@ -105,13 +101,13 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-header sensor">
-                        <h2><?php echo $nome.": ".$valor_temperatura . "ºC"; ?></h2>
+                        <h2><?php echo $fotos_nome; ?></h2>
                     </div>
                     <div class="card-body">
-                      <img class="align-center photo" src="imagens/temperature-high.png" alt="Temperatura">
+                      <img class="align-center photo" src="imageLogs/<?php echo $fotos_atual;?>" alt="<?php echo $fotos_atual;?>">
                     </div>
                     <div class="card-footer">
-                        <b>Atualização:</b> <?php echo $hora_temperatura; ?> - <a href="#">Histórico</a>
+                        <b>Atualização:</b> <?php echo $fotos_hora; ?> - <a href="#">Histórico</a>
                     </div>
                   </div>
             </div>

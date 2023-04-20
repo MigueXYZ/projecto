@@ -44,3 +44,11 @@
 .sensor{
     background-color:deepskyblue;
 }
+
+.zindex{
+    z-index: 1050;
+}
+
+.zindex-2{
+    z-index:1040;
+}

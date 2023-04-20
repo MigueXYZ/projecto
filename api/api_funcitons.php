@@ -5,6 +5,11 @@ const INSUCESSO = 0;
 const VEICULO_MAX=100;
 const DESATIVADO=0;
 const ATIVADO=1;
+const CAMARA=1;
+const CONTADOR=2;
+const LUZES=3;
+const TODOS=4;
+
 //função para buscar os utilizadores
 function getUsers(){
     return (explode("\n", file_get_contents('api/files/users/users.txt')));
@@ -42,7 +47,7 @@ function getVeiculoNome(){
 
 //função para buscar o log da ultima atualização dos veiculos
 function getVeiculoLog(){
-    return(file_get_contents("api/files/veiculo/log.txt"));
+    return(explode("\n",file_get_contents("api/files/veiculo/log.txt")));
 }
 
 //função para buscar o estado das luzes
@@ -60,7 +65,19 @@ function getLuzesNome(){
 
 //função para buscar o log das luzes
 function getLuzesLog(){
-    return(file_get_contents("api/files/luzes/log.txt"));
+    return(explode("\n",file_get_contents("api/files/luzes/log.txt")));
 }
 
-//funções para buscar informações relevantes
+//funções para buscar informações relevantes sobre as fotos
+function getFotosAtual(){
+    return(file_get_contents("api/files/fotos/atual.txt"));
+}
+function getFotosHora(){
+    return(file_get_contents("api/files/fotos/hora.txt"));
+}
+function getFotosNome(){
+    return(file_get_contents("api/files/fotos/nome.txt"));
+}
+function getFotosLog(){
+    return(explode("\n",file_get_contents("api/files/fotos/log.txt")));
+}

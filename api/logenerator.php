@@ -1,5 +1,5 @@
 <?php
-
+/*
 // Temperatura Log
 $valor_temperatura = file_get_contents("files/temperatura/valor.txt");
 // Set timezone
@@ -12,7 +12,7 @@ $timestamp = date('Y/m/d H:i:s') . ';' . $valor_temperatura;
 
 // Append timestamp to file
 $file = fopen($file_path, 'a');
-fwrite($file, $timestamp . "\n");
+fwrite($file, "\n" . $timestamp);
 fclose($file);
 
 
@@ -26,7 +26,7 @@ $timestamp = date('Y/m/d H:i:s') . ';' . $veiculo_quant;
 
 // Append timestamp to file
 $file = fopen($file_path, 'a');
-fwrite($file, $timestamp . "\n");
+fwrite($file, "\n" . $timestamp);
 fclose($file);
 
 
@@ -41,9 +41,9 @@ $timestamp = date('Y/m/d H:i:s') . ';' . $luzes_estado;
 
 // Append timestamp to file
 $file = fopen($file_path, 'a');
-fwrite($file, $timestamp . "\n");
+fwrite($file, "\n" . $timestamp);
 fclose($file);
-
+*/
 
 
 header("Location: ../dashboard.php");
