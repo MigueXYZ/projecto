@@ -44,6 +44,9 @@ if(!isset($_GET['log'])){
                     <div class="navbar-nav">
                         <a class="nav-link active" href="dashboard.php">Home</a>
                         <a class="nav-link" aria-current="page" href="#">Histórico</a>
+                        <a class="nav-link" aria-current="page" href="#fotos">Fotos</a>
+                        <a class="nav-link" aria-current="page" href="#luzes">Luzes</a>
+                        <a class="nav-link" aria-current="page" href="#veiculos">Veiculos</a>
                     </div>
                     <div class="w-100 text-end">
                         <button class="btn btn-outline-danger" type="" onclick="window.location.replace('logout.php');">
@@ -56,7 +59,7 @@ if(!isset($_GET['log'])){
                 <?php
                 //escolher que logs mostrar
                 if ($aux == CAMARA || $aux == TODOS) {
-                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body">');
+                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="fotos">Fotos</a></h5>');
                     $log = getFotosLog();
                     echo('<table class="table">
                   <thead>
@@ -82,7 +85,7 @@ if(!isset($_GET['log'])){
                 }
 
                 if ($aux == LUZES || $aux == TODOS) {
-                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body">');
+                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="luzes">Luzes</a></h5>');
                     $log = getLuzesLog();
                     echo('<table class="table">
                               <thead>
@@ -112,7 +115,7 @@ if(!isset($_GET['log'])){
                 }
 
                 if ($aux == CONTADOR || $aux == TODOS) {
-                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body">');
+                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="veiculos">Veiculos</a></h5>');
                     $log = getVeiculoLog();
                     echo('<table class="table">
                               <thead>
