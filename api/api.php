@@ -1,4 +1,5 @@
 <?php
+include_once ("api_funcitons.php");
 header('Content-Type: text/html; charset=utf-8');
 //se o servidor receber um POST
 if($_SERVER['REQUEST_METHOD']=="POST"){
