@@ -44,14 +44,6 @@
 .sensor{
     background-color:deepskyblue;
 }
-
-.zindex{
-    z-index: 1050;
-}
-
-.zindex-2{
-    z-index:1040;
-}
 .card-full {
     max-height: 70% !important;
     width: auto;
