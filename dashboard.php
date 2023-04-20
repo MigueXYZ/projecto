@@ -107,7 +107,7 @@
                       <img class="align-center photo" src="imageLogs/<?php echo $fotos_atual;?>" alt="<?php echo $fotos_atual;?>">
                     </div>
                     <div class="card-footer">
-                        <b>Atualização:</b> <?php echo $fotos_hora; ?> - <a href="#">Histórico</a>
+                        <b>Atualização:</b> <?php echo $fotos_hora; ?> - <a href="historico.php?log=<?php echo CAMARA;?>">Histórico</a>
                     </div>
                   </div>
             </div>
@@ -120,7 +120,7 @@
                         <img class="align-center photo" src="<?php echo($veiculo_foto)?>" alt="Parque">
                       </div>
                       <div class="card-footer">
-                          <b>Atualização:</b> <?php echo($veiculo_hora)?> - <a href="#">Histórico</a>
+                          <b>Atualização:</b> <?php echo($veiculo_hora)?> - <a href="historico.php?log=<?php echo CONTADOR;?>">Histórico</a>
                       </div>
                   </div>
             </div>
@@ -133,7 +133,7 @@
                         <img class="align-center photo" src="<?php echo($luzes_foto)?>" alt="LED">
                       </div>
                       <div class="card-footer">
-                          <b>Atualização:</b> 2023/03/10 14:31 - <a href="#">Histórico</a>
+                          <b>Atualização:</b> 2023/03/10 14:31 - <a href="historico.php?log=<?php echo LUZES;?>">Histórico</a>
                       </div>
                   </div>
             </div>

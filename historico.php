@@ -36,7 +36,7 @@ if (!isset($_SESSION['username']) || !isset($_GET['log'])) {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" href="index.php">Home</a>
+                        <a class="nav-link active" href="dashboard.php">Home</a>
                         <a class="nav-link" aria-current="page" href="#">Histórico</a>
                     </div>
                     <div class="w-100 text-end">
@@ -67,7 +67,7 @@ if (!isset($_SESSION['username']) || !isset($_GET['log'])) {
                     }
                     //imprimir a informação dos logs
                     foreach ($log_array as $entry) {
-                        echo("<tr><td>" . $entry[0] . "</td><td><a href='image.php?image=imageLogs/" . $entry[1] . "&log=" . $_GET['log'] . "' target='_blank'>" . $entry[1] . "</a></td></tr>");
+                        echo("<tr><td>" . $entry[0] . "</td><td><a href='image.php?image=imageLogs/" . $entry[1] . "&log=" . $_GET['log'] . "' target='_self'>" . $entry[1] . "</a></td></tr>");
                     }
                     echo('   </tbody>
                 </table>

@@ -52,3 +52,7 @@
 .zindex-2{
     z-index:1040;
 }
+.card-full {
+    max-height: 70% !important;
+    width: auto;
+}
