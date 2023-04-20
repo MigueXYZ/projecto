@@ -56,7 +56,7 @@ if(!isset($_GET['log'])){
                 <?php
                 //escolher que logs mostrar
                 if ($aux == CAMARA || $aux == TODOS) {
-                    echo('<div class="card card-theme m-2"><div class="card-body">');
+                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body">');
                     $log = getFotosLog();
                     echo('<table class="table">
                   <thead>
@@ -82,7 +82,7 @@ if(!isset($_GET['log'])){
                 }
 
                 if ($aux == LUZES || $aux == TODOS) {
-                    echo('<div class="card card-theme m-2"><div class="card-body">');
+                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body">');
                     $log = getLuzesLog();
                     echo('<table class="table">
                               <thead>
@@ -112,7 +112,7 @@ if(!isset($_GET['log'])){
                 }
 
                 if ($aux == CONTADOR || $aux == TODOS) {
-                    echo('<div class="card card-theme m-2"><div class="card-body">');
+                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body">');
                     $log = getVeiculoLog();
                     echo('<table class="table">
                               <thead>
