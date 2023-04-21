@@ -54,7 +54,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
             </a>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input required type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Username">
+                <input required type="text" class="form-control" id="username" name="username" placeholder="Username">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>

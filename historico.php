@@ -49,7 +49,7 @@ if(!isset($_GET['log'])){
                         <a class="nav-link" aria-current="page" href="#veiculos">Veiculos</a>
                     </div>
                     <div class="w-100 text-end">
-                        <button class="btn btn-outline-danger" type="" onclick="window.location.replace('logout.php');">
+                        <button class="btn btn-outline-danger" onclick="window.location.replace('logout.php');">
                             Logout
                         </button>
                     </div>
@@ -85,7 +85,7 @@ if(!isset($_GET['log'])){
                         if (--$count <= 0) {
                             break;
                         }
-                        echo("<tr><td>" . $entry[0] . "</td><td><a href='image.php?image=imageLogs/" . $entry[1] . "&log=" . $aux . "' target='_self'>" . $entry[1] . "</a></td></tr>");
+                        echo("<tr><td>" . $entry[0] . "</td><td><a href='image.php?image=imageLogs/" . trim($entry[1]) . "&log=" . $aux . "' target='_self'>" . $entry[1] . "</a></td></tr>");
                     }
                     echo('   </tbody>
                 </table>

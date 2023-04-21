@@ -31,7 +31,7 @@ if (isset($_GET['image'])) {
                             <a class="nav-link" href="historico.php?log='.$_GET["log"].'">Histórico</a>
                         </div>
                         <div class="w-100 text-end">
-                            <button class="btn btn-outline-danger" type="" onclick="window.location.replace(\'logout.php\');">
+                            <button class="btn btn-outline-danger" onclick="window.location.replace(\'logout.php\');">
                                 Logout
                             </button>
                         </div>
@@ -43,7 +43,8 @@ if (isset($_GET['image'])) {
     ');
     echo '<div class="card card-full">';
     echo '<div class="card-body d-flex justify-content-center">';
-    echo '<img class="card-img-top card-full rounded" src="' . $image . '">';
+    echo '<img class="card-img-top card-full rounded" src="' . $image . '" alt="'.$image.'">';
+    echo '</div>';
     echo '</div>';
     echo '</div>';
 
