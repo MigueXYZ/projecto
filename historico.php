@@ -59,8 +59,11 @@ if(!isset($_GET['log'])){
                 <?php
                 //escolher que logs mostrar
                 if ($aux == CAMARA || $aux == TODOS) {
-                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="fotos">Fotos</a></h5>');
+                    //pegar a informação e verificar se é null
                     $log = getFotosLog();
+                    if($log!=null){
+                       echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="fotos">Fotos</a></h5>');
+                    
                     echo('<table class="table">
                   <thead>
                     <tr>
@@ -72,21 +75,32 @@ if(!isset($_GET['log'])){
                     //dividir a informação dos logs
                     $log_array = array();
                     foreach ($log as $entry) {
-                        $log_array[] = explode(";", $entry);
+                            $log_array[] = explode(";", $entry);
                     }
-                    //imprimir a informação dos logs
+                   //verificar a length do array
+                    $count = count($log_array);
+                     //imprimir a informação dos logs
                     foreach ($log_array as $entry) {
+                        //se for o último elemento, sai
+                        if (--$count <= 0) {
+                            break;
+                        }
                         echo("<tr><td>" . $entry[0] . "</td><td><a href='image.php?image=imageLogs/" . $entry[1] . "&log=" . $aux . "' target='_self'>" . $entry[1] . "</a></td></tr>");
                     }
                     echo('   </tbody>
                 </table>
                 ');
-                    echo('</div></div>');
+                    echo('</div></div>'); 
+                    }
+                    
                 }
 
                 if ($aux == LUZES || $aux == TODOS) {
-                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="luzes">Luzes</a></h5>');
-                    $log = getLuzesLog();
+                    //pegar a informação e verificar se é null
+                    $log=getLuzesLog();
+                    if($log!=false){
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="luzes">Luzes</a></h5>');
+                    
                     echo('<table class="table">
                               <thead>
                                 <tr>
@@ -97,9 +111,15 @@ if(!isset($_GET['log'])){
                               <tbody>');
                     $log_array = array();
                     foreach ($log as $entry) {
-                        $log_array[] = explode(";", $entry);
+                            $log_array[] = explode(";", $entry);
                     }
+                    //verificar a length do array
+                    $count = count($log_array);
                     foreach ($log_array as $l) {
+                        //se for o último elemento, sai
+                        if (--$count <= 0) {
+                            break;
+                        }
                         echo('<tr>
                                   <td>' . $l[0] . '</td>
                                   <td>');
@@ -112,28 +132,41 @@ if(!isset($_GET['log'])){
                     }
                     echo('</tbody></table>');
                     echo('</div></div>');
+                    }
+                    
                 }
 
                 if ($aux == CONTADOR || $aux == TODOS) {
-                    echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="veiculos">Veiculos</a></h5>');
                     $log = getVeiculoLog();
-                    echo('<table class="table">
-                              <thead>
-                                <tr>
-                                  <th>Data/Hora</th>
-                                  <th>Quantidade</th>
-                                </tr>
-                              </thead>
-                              <tbody>');
-                    foreach ($log as $entry) {
-                        $log_array[] = explode(";", $entry);
+                    if($log!=null){
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="veiculos">Veiculos</a></h5>');
+
+                        echo('<table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Data/Hora</th>
+                                      <th>Quantidade</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>');
+                        
+                        foreach ($log as $l) {
+                                $log_veiculos[] = explode(";", $l);
+                        }
+                        //verificar a length do array
+                        $count = count($log_veiculos);
+                        
+                        foreach ($log_veiculos as $l) {
+                            //se for o último elemento, sai
+                            if (--$count <= 0) {
+                                break;
+                            }
+                           print('<tr><td>' . $l[0] . '</td><td>' . $l[1] . '</td></tr>');
+                        }
+
+                        echo('</tbody></table>');
+                        echo('</div></div>');
                     }
-                    foreach ($log_array as $l) {
-                        print('<tr><td>' . $l[0] . '</td>
-                               <td>' . $l[1] . '</td></tr>');
-                    }
-                    echo('</tbody></table>');
-                    echo('</div></div>');
                 }
                 ?>
 
