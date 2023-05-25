@@ -19,6 +19,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 http_response_code(200);
                 echo "Ficheiro escrito com sucesso";
             }else{
+
                 http_response_code(400);
                 echo 'Erro ao aceder ao ficheiro';
             }
