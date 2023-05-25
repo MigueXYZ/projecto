@@ -12,10 +12,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         if($_POST['tipo']){
             $nome=existe($_POST['tipo']);
             if($nome!=null && isset($_POST['hora']) && isset($_POST['valor']) && isset($_POST['nome'])){
-                file_put_contents("files/luzes/valor.txt",$_POST['valor']);
-                file_put_contents("files/luzes/hora.txt",$_POST['hora']);
-                file_put_contents("files/luzes/nome.txt",$_POST['nome']);
-                file_put_contents("files/luzes/log.txt",$_POST["hora"].';'.$_POST["estado"].PHP_EOL,FILE_APPEND);
+                file_put_contents("files/".$nome."/valor.txt",$_POST['valor']);
+                file_put_contents("files/".$nome."/hora.txt",$_POST['hora']);
+                file_put_contents("files/".$nome."/nome.txt",$_POST['nome']);
+                file_put_contents("files/".$nome."/log.txt",$_POST["hora"].';'.$_POST["estado"].PHP_EOL,FILE_APPEND);
                 http_response_code(200);
                 echo "Ficheiro escrito com sucesso";
             }else{
