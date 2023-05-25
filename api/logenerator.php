@@ -1,7 +1,7 @@
 <?php
 
 // Veiculo Log
-$veiculo_quant = file_get_contents("files/veiculo/quantidade.txt");
+$veiculo_quant = file_get_contents("files/veiculo/valor.txt");
 
 // Define file path
 $file_path = 'files/veiculo/log.txt';
@@ -16,7 +16,7 @@ fclose($file);
 
 // Luzes Log
 
-$luzes_estado = file_get_contents("files/luzes/estado.txt");
+$luzes_estado = file_get_contents("files/luzes/valor.txt");
 
 // Define file path
 $file_path = 'files/luzes/log.txt';

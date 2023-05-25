@@ -10,6 +10,22 @@ const CONTADOR=2;
 const LUZES=3;
 const TODOS=4;
 
+//função para ver se o nome é valido
+function existe($nome){
+    switch ($nome) {
+        case CONTADOR:
+            return ("veiculo");
+            break;
+        case CAMARA:
+            return("fotos");
+            break;
+        case LUZES:
+            return("luzes");
+            break;
+    }
+    return null;
+}
+
 //função para buscar os utilizadores
 function getUsers(){
     return (explode("\n", file_get_contents('api/files/users/users.txt')));
@@ -36,7 +52,7 @@ function getVeiculoHora(){
 }
 //função para buscar a quantidade da ultima atualização dos veiculos
 function getVeiculoQuant(){
-    return(file_get_contents("api/files/veiculo/quantidade.txt"));
+    return(file_get_contents("api/files/veiculo/valor.txt"));
 
 }
 //função para buscar o nome da ultima atualização dos veiculos
@@ -52,7 +68,7 @@ function getVeiculoLog(){
 
 //função para buscar o estado das luzes
 function getLuzesEstado(){
-    return(file_get_contents("api/files/luzes/estado.txt"));
+    return(file_get_contents("api/files/luzes/valor.txt"));
 }
 //função para buscar a hora da ultima atualização das luzes
 function getLuzesHora(){
@@ -70,7 +86,7 @@ function getLuzesLog(){
 
 //funções para buscar informações relevantes sobre as fotos
 function getFotosAtual(){
-    return(file_get_contents("api/files/fotos/atual.txt"));
+    return(file_get_contents("api/files/fotos/valor.txt"));
 }
 function getFotosHora(){
     return(file_get_contents("api/files/fotos/hora.txt"));
