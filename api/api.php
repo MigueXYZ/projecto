@@ -48,11 +48,12 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
         $nome=$_GET['nome'];
         if($teste==1){
             if(isset($_GET['estado'])){
-                $temp= file_get_contents("files/Luzes/estado.txt");
+                $temp= file_get_contents("files/".$nome."/estado.txt");
+                echo $temp;
+            }else{
+                $temp= file_get_contents("files/".$nome."/valor.txt");
                 echo $temp;
             }
-            $temp= file_get_contents("files/".$nome."/valor.txt");
-            echo $temp;
         }
     }
 }
