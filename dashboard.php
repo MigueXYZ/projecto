@@ -256,8 +256,34 @@
                     <div class="card-body">
                         <img class="align-center photo" src="<?php echo($humidade_foto);?>" alt="LED">
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer h-100">
                         <b>Atualização:</b> <?php echo $humidade_hora; ?><?php if($perms!=2){ echo ' - <a href="historico.php?log='. HUMIDADE.'">Histórico</a>';}?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header <?php echo($cancelaA_cor);?>">
+                        <h2><?php echo($cancelaA_nome.": ".$cancelaA_estado)?></h2>
+                    </div>
+                    <div class="card-body">
+                        <img class="align-center photo" src="<?php echo($cancelaA_foto);?>" alt="LED">
+                    </div>
+                    <div class="card-footer">
+                        <a href="<?php if($perms==0){ echo 'api/changeCancela.php?id=1';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($cancelaA_classe);?>"><?php echo $cancelaA_estado ?></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header <?php echo($cancelaB_cor);?>">
+                        <h2><?php echo($cancelaB_nome.": ".$cancelaB_estado)?></h2>
+                    </div>
+                    <div class="card-body">
+                        <img class="align-center photo" src="<?php echo($cancelaB_foto);?>" alt="LED">
+                    </div>
+                    <div class="card-footer">
+                        <a href="<?php if($perms==0){ echo 'api/changeCancela.php?id=2';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($cancelaB_classe);?>"><?php echo $cancelaB_estado ?></a>
                     </div>
                 </div>
             </div>
@@ -307,32 +333,7 @@
             </div>
         </div>
         <div class="row text-center mt-2">
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-header <?php echo($cancelaA_cor);?>">
-                        <h2><?php echo($cancelaA_nome.": ".$cancelaA_estado)?></h2>
-                    </div>
-                    <div class="card-body">
-                        <img class="align-center photo" src="<?php echo($cancelaA_foto);?>" alt="LED">
-                    </div>
-                    <div class="card-footer">
-                        <a href="<?php if($perms==0){ echo 'api/changeCancela.php?id=1';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($cancelaA_classe);?>"><?php echo $cancelaA_estado ?></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-header <?php echo($cancelaB_cor);?>">
-                        <h2><?php echo($cancelaB_nome.": ".$cancelaB_estado)?></h2>
-                    </div>
-                    <div class="card-body">
-                        <img class="align-center photo" src="<?php echo($cancelaB_foto);?>" alt="LED">
-                    </div>
-                    <div class="card-footer">
-                        <a href="<?php if($perms==0){ echo 'api/changeCancela.php?id=2';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($cancelaB_classe);?>"><?php echo $cancelaB_estado ?></a>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
