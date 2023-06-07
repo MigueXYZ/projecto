@@ -17,16 +17,19 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             if($teste==1 && isset($_POST['valor'])  ){
                 $valor=$_POST['valor'];
                 if(strcmp($nome,"Veiculos")==0){
+                    $url="../api/files/Veiculos/valor.txt";
                     if($_POST['valor']==1){
-                        $valor=getVeiculoQuant()+1;
+                        $valor=file_get_contents($url)+1;
                     }else{
-                        $valor =getVeiculoQuant()-1;
+                        $valor=file_get_contents($url)-1;
                     }
                 }
-
-                file_put_contents("files/".$nome."/valor.txt",$valor);
-                file_put_contents("files/".$nome."/hora.txt",$hora);
-                file_put_contents("files/".$nome."/nome.txt",$_POST['nome']);
+                $url="files/".$nome."/valor.txt";
+                file_put_contents($url,$valor);
+                $url="files/".$nome."/hora.txt";
+                file_put_contents($url,$hora);
+                $url="files/".$nome."/nome.txt";
+                file_put_contents($url,$_POST['nome']);
                 $filePath = "files/".$nome."/log.txt";
                 $newContent = $hora . ';' . $valor . PHP_EOL;
                 $existingContent = file_get_contents($filePath);

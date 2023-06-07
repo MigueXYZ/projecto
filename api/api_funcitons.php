@@ -32,6 +32,8 @@ function existe($nome){
         return 1;
     }elseif(strcmp($nome,"CancelaB")==0){
         return 1;
+    }elseif(strcmp($nome,"Humidade")==0){
+        return 1;
     }else{
         return 0;
     }
