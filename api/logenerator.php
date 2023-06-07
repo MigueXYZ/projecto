@@ -1,10 +1,10 @@
 <?php
 
 // Veiculo Log
-$veiculo_quant = file_get_contents("files/veiculo/valor.txt");
+$veiculo_quant = file_get_contents("files/Veiculos/valor.txt");
 
 // Define file path
-$file_path = 'files/veiculo/log.txt';
+$file_path = 'files/Veiculos/log.txt';
 
 $timestamp = date('Y/m/d H:i:s') . ';' . $veiculo_quant;
 
@@ -16,10 +16,10 @@ fclose($file);
 
 // Luzes Log
 
-$luzes_estado = file_get_contents("files/luzes/valor.txt");
+$luzes_estado = file_get_contents("files/Luzes/valor.txt");
 
 // Define file path
-$file_path = 'files/luzes/log.txt';
+$file_path = 'files/Luzes/log.txt';
 
 $timestamp = date('Y/m/d H:i:s') . ';' . $luzes_estado;
 

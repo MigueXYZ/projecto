@@ -42,8 +42,8 @@ if(!isset($_GET['log'])){
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" href="dashboard.php">Home</a>
-                        <a class="nav-link" aria-current="page" href="#">Histórico</a>
+                        <a class="nav-link" href="dashboard.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Histórico</a>
                         <a class="nav-link" aria-current="page" href="#fotos">Fotos</a>
                         <a class="nav-link" aria-current="page" href="#luzes">Luzes</a>
                         <a class="nav-link" aria-current="page" href="#veiculos">Veiculos</a>
@@ -62,7 +62,7 @@ if(!isset($_GET['log'])){
                     //pegar a informação e verificar se é null
                     $log = getFotosLog();
                     if($log!=null){
-                       echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="fotos">Fotos</a></h5>');
+                       echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="Fotos">Fotos</a></h5>');
                     
                     echo('<table class="table">
                   <thead>
@@ -99,7 +99,7 @@ if(!isset($_GET['log'])){
                     //pegar a informação e verificar se é null
                     $log=getLuzesLog();
                     if($log!=false){
-                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="luzes">Luzes</a></h5>');
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="Luzes">Luzes</a></h5>');
                     
                     echo('<table class="table">
                               <thead>

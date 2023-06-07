@@ -14,12 +14,21 @@
     $veiculo_quant=getVeiculoQuant();
     $veiculo_hora=getVeiculoHora();
     $veiculo_nome=getVeiculoNome();
-    $luzes_nome=getLuzesNome();
-    $luzes_hora=getLuzesHora();
-    $luzes_estado=trim(getLuzesEstado());
+    $luzes_nome=getLuzesNome(0);
+    $luzes_hora=getLuzesHora(0);
+    $luzes_estado=trim(getLuzesEstado(0));
+    $luzes_nome2=getLuzesNome(2);
+    $luzes_hora2=getLuzesHora(2);
+    $luzes_estado2=trim(getLuzesEstado(2));
+    $luzes_nome3=getLuzesNome(3);
+    $luzes_hora3=getLuzesHora(3);
+    $luzes_estado3=trim(getLuzesEstado(3));
     $fotos_atual=getFotosAtual();
     $fotos_hora=getFotosHora();
     $fotos_nome=getFotosNome();
+    $auto=getAuto(0);
+    $auto2=getAuto(2);
+    $auto3=getAuto(3);
 
     //lógica para definir qual imagem//cor sar para os veiculos
     $percentagem=$veiculo_quant/VEICULO_MAX;
@@ -40,16 +49,64 @@
         $veiculo_cor="sensor-red";
     }
 
-    //lógica para definir qual imagem//cor sar para as luzes
+    //lógica para definir qual imagem//cor sar para as Luzes
     if($luzes_estado==DESATIVADO){
         $luzes_foto="imagens/light-off.png";
         $luzes_cor="sensor-gray";
+        $luzes_classe="danger";
         $luzes_estado="Desativado";
     }
     elseif ($luzes_estado==ATIVADO){
         $luzes_foto="imagens/light-on.png";
         $luzes_cor="sensor-yellow";
+        $luzes_classe="success";
         $luzes_estado="Ativado";
+    }
+    if($luzes_estado2==DESATIVADO){
+        $luzes_foto2="imagens/light-off.png";
+        $luzes_cor2="sensor-gray";
+        $luzes_classe2="danger";
+        $luzes_estado2="Desativado";
+    }
+    elseif ($luzes_estado2==ATIVADO){
+        $luzes_foto2="imagens/light-on.png";
+        $luzes_cor2="sensor-yellow";
+        $luzes_classe2="success";
+        $luzes_estado2="Ativado";
+    }
+    if($luzes_estado3==DESATIVADO){
+        $luzes_foto3="imagens/light-off.png";
+        $luzes_cor3="sensor-gray";
+        $luzes_classe3="danger";
+        $luzes_estado3="Desativado";
+    }
+    elseif ($luzes_estado3==ATIVADO){
+        $luzes_foto3="imagens/light-on.png";
+        $luzes_cor3="sensor-yellow";
+        $luzes_classe3="success";
+        $luzes_estado3="Ativado";
+    }
+
+    if($auto==DESATIVADO){
+        $auto_text="Desativado";
+        $auto_class="danger";
+    }else{
+        $auto_text="Ativado";
+        $auto_class="success";
+    }
+    if($auto2==DESATIVADO){
+        $auto_text2="Desativado";
+        $auto_class2="danger";
+    }else{
+        $auto_text2="Ativado";
+        $auto_class2="success";
+    }
+    if($auto3==DESATIVADO){
+        $auto_text3="Desativado";
+        $auto_class3="danger";
+    }else{
+        $auto_text3="Ativado";
+        $auto_class3="success";
     }
 ?>
 <!doctype html>
@@ -120,22 +177,53 @@
                         <img class="align-center photo" src="<?php echo($veiculo_foto)?>" alt="Parque">
                       </div>
                       <div class="card-footer">
-                          <b>Atualização:</b> <?php echo($veiculo_hora)?> - <a href="historico.php?log=<?php echo CONTADOR;?>">Histórico</a>
+                          <b>Atualização:</b> <?php echo $veiculo_hora; ?> - <a href="historico.php?log=<?php echo CONTADOR ;?>">Histórico</a>
                       </div>
                   </div>
             </div>
+        </div>
+        <div class="row text-center mt-2">
             <div class="col-sm-4">
                 <div class="card">
-                    <div class="card-header <?php echo($luzes_cor) ?>">
+                    <div class="card-header <?php echo($luzes_cor);?>">
                         <h2><?php echo($luzes_nome.": ".$luzes_estado)?></h2>
                     </div>
                     <div class="card-body">
-                        <img class="align-center photo" src="<?php echo($luzes_foto)?>" alt="LED">
-                      </div>
-                      <div class="card-footer">
-                          <b>Atualização:</b> 2023/03/10 14:31 - <a href="historico.php?log=<?php echo LUZES;?>">Histórico</a>
-                      </div>
-                  </div>
+                        <img class="align-center photo" src="<?php echo($luzes_foto);?>" alt="LED">
+                    </div>
+                    <div class="card-footer">
+                        <!--<a href="api/auto.php?id=1" class="btn btn-<?php echo($auto_class);?>">Modo Auto: <?php echo $auto_text ?></a>-->
+                        <a href="api/changeLuzes.php?id=1" class="btn btn-<?php echo($luzes_classe);?>"><?php echo $luzes_estado ?></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header <?php echo($luzes_cor2);?>">
+                        <h2><?php echo($luzes_nome2.": ".$luzes_estado2)?></h2>
+                    </div>
+                    <div class="card-body">
+                        <img class="align-center photo" src="<?php echo($luzes_foto2);?>" alt="LED">
+                    </div>
+                    <div class="card-footer">
+                        <!--<a href="api/auto.php?id=2" class="btn btn-<?php echo($auto_class2);?>">Modo Auto: <?php echo $auto_text2 ?></a>-->
+                        <a href="api/changeLuzes.php?id=2" class="btn btn-<?php echo($luzes_classe2);?>"><?php echo $luzes_estado2 ?></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header <?php echo($luzes_cor3);?>">
+                        <h2><?php echo($luzes_nome3.": ".$luzes_estado3)?></h2>
+                    </div>
+                    <div class="card-body">
+                        <img class="align-center photo" src="<?php echo($luzes_foto3);?>" alt="LED">
+                    </div>
+                    <div class="card-footer">
+                        <!--<a href="api/auto.php?id=3" class="btn btn-<?php echo($auto_class3);?>">Modo Auto: <?php echo $auto_text3 ?></a>-->
+                        <a href="api/changeLuzes.php?id=3" class="btn btn-<?php echo($luzes_classe3);?>"><?php echo $luzes_estado3 ?></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
