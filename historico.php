@@ -44,8 +44,10 @@ if(!isset($_GET['log'])){
                     <div class="navbar-nav">
                         <a class="nav-link" href="dashboard.php">Home</a>
                         <a class="nav-link active" aria-current="page" href="#">Histórico</a>
-                        <a class="nav-link" aria-current="page" href="#fotos">Fotos</a>
-                        <a class="nav-link" aria-current="page" href="#luzes">Luzes</a>
+                        <a class="nav-link" aria-current="page" href="#Fotos">Fotos</a>
+                        <a class="nav-link" aria-current="page" href="#Luzes">Luzes1</a>
+                        <a class="nav-link" aria-current="page" href="#Luzes2">Luzes2</a>
+                        <a class="nav-link" aria-current="page" href="#Luzes3">Luzes3</a>
                         <a class="nav-link" aria-current="page" href="#veiculos">Veiculos</a>
                     </div>
                     <div class="w-100 text-end">
@@ -97,11 +99,12 @@ if(!isset($_GET['log'])){
 
                 if ($aux == LUZES || $aux == TODOS) {
                     //pegar a informação e verificar se é null
-                    $log=getLuzesLog();
+                    $url="api/files/Luzes/log.txt";
+                    $log=explode("\n",file_get_contents($url));
                     if($log!=false){
-                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="Luzes">Luzes</a></h5>');
-                    
-                    echo('<table class="table">
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="Luzes">Luzes1</a></h5>');
+
+                        echo('<table class="table">
                               <thead>
                                 <tr>
                                   <th>Data/Hora</th>
@@ -109,31 +112,107 @@ if(!isset($_GET['log'])){
                                 </tr>
                               </thead>
                               <tbody>');
-                    $log_array = array();
-                    foreach ($log as $entry) {
+                        $log_array = array();
+                        foreach ($log as $entry) {
                             $log_array[] = explode(";", $entry);
-                    }
-                    //verificar a length do array
-                    $count = count($log_array);
-                    foreach ($log_array as $l) {
-                        //se for o último elemento, sai
-                        if (--$count <= 0) {
-                            break;
                         }
-                        echo('<tr>
+                        //verificar a length do array
+                        $count = count($log_array);
+                        foreach ($log_array as $l) {
+                            //se for o último elemento, sai
+                            if (--$count <= 0) {
+                                break;
+                            }
+                            echo('<tr>
                                   <td>' . $l[0] . '</td>
                                   <td>');
-                        if ($l[1] == "1") {
-                            echo '<span class="nav-pill nav-pill-success">Ativado</span>';
-                        } else {
-                            echo '<span class="nav-pill nav-pill-danger">Desativado</span>';
+                            if ($l[1] == "1") {
+                                echo '<span class="nav-pill nav-pill-success">Ativado</span>';
+                            } else {
+                                echo '<span class="nav-pill nav-pill-danger">Desativado</span>';
+                            }
+                            echo('</td></tr>');
                         }
-                        echo('</td></tr>');
+                        echo('</tbody></table>');
+                        echo('</div></div>');
                     }
-                    echo('</tbody></table>');
-                    echo('</div></div>');
+                    //pegar a informação e verificar se é null
+                    $url="api/files/Luzes2/log.txt";
+                    $log=explode("\n",file_get_contents($url));
+                    if($log!=false){
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="Luzes2">Luzes2</a></h5>');
+
+                        echo('<table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Data/Hora</th>
+                                  <th>Estado</th>
+                                </tr>
+                              </thead>
+                              <tbody>');
+                        $log_array = array();
+                        foreach ($log as $entry) {
+                            $log_array[] = explode(";", $entry);
+                        }
+                        //verificar a length do array
+                        $count = count($log_array);
+                        foreach ($log_array as $l) {
+                            //se for o último elemento, sai
+                            if (--$count <= 0) {
+                                break;
+                            }
+                            echo('<tr>
+                                  <td>' . $l[0] . '</td>
+                                  <td>');
+                            if ($l[1] == "1") {
+                                echo '<span class="nav-pill nav-pill-success">Ativado</span>';
+                            } else {
+                                echo '<span class="nav-pill nav-pill-danger">Desativado</span>';
+                            }
+                            echo('</td></tr>');
+                        }
+                        echo('</tbody></table>');
+                        echo('</div></div>');
                     }
-                    
+                    //pegar a informação e verificar se é null
+                    $url="api/files/Luzes3/log.txt";
+                    $log=explode("\n",file_get_contents($url));
+                    if($log!=false){
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="Luzes3">Luzes3</a></h5>');
+
+                        echo('<table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Data/Hora</th>
+                                  <th>Estado</th>
+                                </tr>
+                              </thead>
+                              <tbody>');
+                        $log_array = array();
+                        foreach ($log as $entry) {
+                            $log_array[] = explode(";", $entry);
+                        }
+                        //verificar a length do array
+                        $count = count($log_array);
+                        foreach ($log_array as $l) {
+                            //se for o último elemento, sai
+                            if (--$count <= 0) {
+                                break;
+                            }
+                            echo('<tr>
+                                  <td>' . $l[0] . '</td>
+                                  <td>');
+                            if ($l[1] == "1") {
+                                echo '<span class="nav-pill nav-pill-success">Ativado</span>';
+                            } else {
+                                echo '<span class="nav-pill nav-pill-danger">Desativado</span>';
+                            }
+                            echo('</td></tr>');
+                        }
+                        echo('</tbody></table>');
+                        echo('</div></div>');
+                    }
+
                 }
 
                 if ($aux == CONTADOR || $aux == TODOS) {

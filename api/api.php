@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 file_put_contents("files/".$nome."/hora.txt",$hora);
                 file_put_contents("files/".$nome."/nome.txt",$_POST['nome']);
                 $filePath = "files/".$nome."/log.txt";
-                $newContent = $_POST["hora"] . ';' . $_POST["valor"] . PHP_EOL;
+                $newContent = $hora . ';' . $valor . PHP_EOL;
                 $existingContent = file_get_contents($filePath);
                 $updatedContent = $newContent . $existingContent;
                 file_put_contents($filePath, $updatedContent);

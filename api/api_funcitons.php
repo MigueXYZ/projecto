@@ -35,6 +35,7 @@ function getCreds(){
 
 //Fução para catalogar as tentativas de Login
 function logAttempt($flag,$user){
+    $aux='';
     if($flag==SUCESSO){
         $aux="Sucesso";
     }elseif($flag==INSUCESSO){
@@ -98,8 +99,15 @@ function getLuzesNome($valor){
 }
 
 //função para buscar o log das Luzes
-function getLuzesLog(){
-    return(explode("\n",file_get_contents("api/files/Luzes/log.txt")));
+function getLuzesLog($valor){
+    if ($valor == 0) {
+        $pasta = "Luzes";
+    } else {
+        $pasta = "Luzes" . $valor;
+    }
+
+    $url = "api/files/" . $pasta . "/nome.txt";
+    return(explode("\n",file_get_contents($url)));
 }
 
 //funções para buscar informações relevantes sobre as Fotos
