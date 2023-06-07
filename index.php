@@ -25,6 +25,8 @@ if(isset($_POST['username']) && isset($_POST['password'])){
                 //catalogar o login ,criar uma sessão e redirecionar
                 logAttempt(SUCESSO,$username[$i]);
                 $_SESSION['username']=$_POST['username'];
+                $perms=getPerms();
+                $_SESSION['perms']=$perms[$i];
                 header("Location:dashboard.php");
             }else{
                 //catalogar a tentativa de login

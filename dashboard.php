@@ -5,11 +5,13 @@
     //se o username não existir na sessão
     if(!isset($_SESSION['username'])){
         //vai para index.php
-        header("refresh:5;url=index.php");
+        header("Location: index.php");
         //mostra ACESSO RESTRITO
         die("Acesso Restrito.");
         //acaba o if
+
     }
+    $perms=$_SESSION['perms'];
     //busca os valores necessários
     $veiculo_quant=getVeiculoQuant();
     $veiculo_hora=getVeiculoHora();
@@ -32,11 +34,24 @@
     $temperatura_nome=getTemperaturaNome();
     $temperatura_hora=getTemperaturaHora();
     $temperatura_valor=getTemperaturaAtual();
-    if($temperatura_valor>=65){
-        $temperatura_foto="imagens/humidity-high.png";
+    if($temperatura_valor>=30){
+        $temperatura_foto="imagens/temperature-high.png";
+        $temperatura_cor="sensor-yellow";
     }else{
-        $temperatura_foto="imagens/humidity-low.png";
+        $temperatura_foto="imagens/temperature-low.png";
+        $temperatura_cor="sensor-green";
     }
+    $humidade_nome=getHumidadeNome();
+    $humidade_hora=getHumidadeHora();
+    $humidade_valor=getHumidadeAtual();
+    if($humidade_valor>=80){
+        $humidade_foto="imagens/humidity-high.png";
+        $humidade_cor="sensor-yellow";
+    }else{
+        $humidade_foto="imagens/humidity-low.png";
+        $humidade_cor="sensor-green";
+    }
+
 
 
     //lógica para definir qual imagem//cor sar para os veiculos
@@ -139,7 +154,10 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" href="historico.php?log=<?php echo TODOS;?>">Histórico</a>
+                        <?php if($perms!=2){
+                            echo '<a class="nav-link" href="historico.php?log='.TODOS.'">Histórico</a>';
+                        }?>
+
                     </div>
                     <div class="w-100 text-end">
                         <button class="btn btn-outline-danger" onclick="window.location.replace('logout.php');">Logout</button>
@@ -161,7 +179,6 @@
             </div>
           </div>
     </div>
-    
     <div class="container p-3 card-theme">
         <div class="row text-center">
             <div class="col-sm-4">
@@ -173,7 +190,7 @@
                       <img class="align-center photo" src="imageLogs/<?php echo $fotos_atual;?>" alt="<?php echo $fotos_atual;?>">
                     </div>
                     <div class="card-footer">
-                        <b>Atualização:</b> <?php echo $fotos_hora; ?> - <a href="historico.php?log=<?php echo CAMARA;?>">Histórico</a>
+                        <b>Atualização:</b> <?php echo $fotos_hora; ?><?php if($perms!=2){ echo ' - <a href="historico.php?log='. CAMARA.'">Histórico</a>';}?>
                     </div>
                   </div>
             </div>
@@ -186,26 +203,39 @@
                         <img class="align-center photo" src="<?php echo($veiculo_foto)?>" alt="Parque">
                       </div>
                       <div class="card-footer">
-                          <b>Atualização:</b> <?php echo $veiculo_hora; ?> - <a href="historico.php?log=<?php echo CONTADOR ;?>">Histórico</a>
+                          <b>Atualização:</b> <?php echo $veiculo_hora; ?><?php if($perms!=2){ echo ' - <a href="historico.php?log='. CONTADOR.'">Histórico</a>';}?>
                       </div>
                   </div>
             </div>
             <div class="col-sm-4">
                 <div class="card">
-                    <div class="card-header bg-light">
+                    <div class="card-header <?php echo($temperatura_cor)?>">
                         <h2><?php echo($temperatura_nome.": ".$temperatura_valor."ºC")?></h2>
                     </div>
                     <div class="card-body">
                         <img class="align-center photo" src="<?php echo($temperatura_foto);?>" alt="LED">
                     </div>
                     <div class="card-footer">
-                        <b>Atualização:</b> <?php echo $temperatura_hora; ?> - <a href="historico.php?log=<?php echo TEMPERATURA ;?>">Histórico</a>
+                        <b>Atualização:</b> <?php echo $temperatura_hora; ?><?php if($perms!=2){ echo ' - <a href="historico.php?log='. TEMPERATURA.'">Histórico</a>';}?>
                     </div>
                 </div>
             </div>
         </div>
-
-
+        <div class="row text-center mt-2">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header <?php echo($humidade_cor)?>">
+                        <h2><?php echo($humidade_nome.": ".$humidade_valor."%")?></h2>
+                    </div>
+                    <div class="card-body">
+                        <img class="align-center photo" src="<?php echo($humidade_foto);?>" alt="LED">
+                    </div>
+                    <div class="card-footer">
+                        <b>Atualização:</b> <?php echo $humidade_hora; ?><?php if($perms!=2){ echo ' - <a href="historico.php?log='. HUMIDADE.'">Histórico</a>';}?>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row text-center mt-2">
             <div class="col-sm-4">
                 <div class="card">
@@ -217,7 +247,7 @@
                     </div>
                     <div class="card-footer">
                         <!--<a href="api/auto.php?id=1" class="btn btn-<?php echo($auto_class);?>">Modo Auto: <?php echo $auto_text ?></a>-->
-                        <a href="api/changeLuzes.php?id=1" class="btn btn-<?php echo($luzes_classe);?>"><?php echo $luzes_estado ?></a>
+                        <a href="<?php if($perms==0){ echo 'api/changeLuzes.php?id=1';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($luzes_classe);?>"><?php echo $luzes_estado ?></a>
                     </div>
                 </div>
             </div>
@@ -231,7 +261,7 @@
                     </div>
                     <div class="card-footer">
                         <!--<a href="api/auto.php?id=2" class="btn btn-<?php echo($auto_class2);?>">Modo Auto: <?php echo $auto_text2 ?></a>-->
-                        <a href="api/changeLuzes.php?id=2" class="btn btn-<?php echo($luzes_classe2);?>"><?php echo $luzes_estado2 ?></a>
+                        <a href="<?php if($perms==0){ echo 'api/changeLuzes.php?id=2';}?>" class="btn btn-<?php echo($luzes_classe2);?>"><?php echo $luzes_estado2 ?></a>
                     </div>
                 </div>
             </div>
@@ -245,7 +275,7 @@
                     </div>
                     <div class="card-footer">
                         <!--<a href="api/auto.php?id=3" class="btn btn-<?php echo($auto_class3);?>">Modo Auto: <?php echo $auto_text3 ?></a>-->
-                        <a href="api/changeLuzes.php?id=3" class="btn btn-<?php echo($luzes_classe3);?>"><?php echo $luzes_estado3 ?></a>
+                        <a href="<?php if($perms==0){ echo 'api/changeLuzes.php?id=3';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($luzes_classe3);?>"><?php echo $luzes_estado3 ?></a>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ const CAMARA=1;
 const CONTADOR=2;
 const LUZES=3;
 const TODOS=4;
-
+const HUMIDADE = 6;
 const TEMPERATURA=5;
 
 //função para ver se o nome é valido
@@ -41,6 +41,9 @@ function getCreds(){
     return(explode("\n", file_get_contents('api/files/Users/creds.txt')));
 }
 
+function getPerms(){
+    return(explode("\n",file_get_contents('api/files/Users/perms.txt')));
+}
 //Fução para catalogar as tentativas de Login
 function logAttempt($flag,$user){
     $aux='';
@@ -73,6 +76,9 @@ function getVeiculoLog(){
 }
 
 function getTemperaturaLog(){
+    return(explode("\n",file_get_contents("api/files/Temperatura/log.txt")));
+}
+function getHumidadeLog(){
     return(explode("\n",file_get_contents("api/files/Temperatura/log.txt")));
 }
 
@@ -146,6 +152,18 @@ function getTemperaturaNome(){
 
 function getTemperaturaHora(){
     return(file_get_contents("api/files/Temperatura/hora.txt"));
+}
+
+function getHumidadeAtual(){
+    return(file_get_contents("api/files/Humidade/valor.txt"));
+}
+
+function getHumidadeNome(){
+    return(file_get_contents("api/files/Humidade/nome.txt"));
+}
+
+function getHumidadeHora(){
+    return(file_get_contents("api/files/Humidade/hora.txt"));
 }
 
 function getAuto($valor){
