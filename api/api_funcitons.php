@@ -11,6 +11,8 @@ const LUZES=3;
 const TODOS=4;
 const HUMIDADE = 6;
 const TEMPERATURA=5;
+const CANCELAA=7;
+const CANCELAB=8;
 
 //função para ver se o nome é valido
 function existe($nome){
@@ -25,6 +27,10 @@ function existe($nome){
     }elseif(strcmp($nome,"Luzes3")==0){
         return 1;
     }elseif(strcmp($nome,"Temperatura")==0){
+        return 1;
+    }elseif(strcmp($nome,"CancelaA")==0){
+        return 1;
+    }elseif(strcmp($nome,"CancelaB")==0){
         return 1;
     }else{
         return 0;
@@ -80,6 +86,14 @@ function getTemperaturaLog(){
 }
 function getHumidadeLog(){
     return(explode("\n",file_get_contents("api/files/Temperatura/log.txt")));
+}
+
+function getCancelaALog(){
+    return(explode("\n",file_get_contents("api/files/CancelaA/log.txt")));
+}
+
+function getCancelaBLog(){
+    return(explode("\n",file_get_contents("api/files/CancelaB/log.txt")));
 }
 
 //função para buscar o estado das Luzes
@@ -164,6 +178,30 @@ function getHumidadeNome(){
 
 function getHumidadeHora(){
     return(file_get_contents("api/files/Humidade/hora.txt"));
+}
+
+function getCancelaAAtual(){
+    return(file_get_contents("api/files/CancelaA/valor.txt"));
+}
+
+function getCancelaANome(){
+    return(file_get_contents("api/files/CancelaA/nome.txt"));
+}
+
+function getCancelaAHora(){
+    return(file_get_contents("api/files/CancelaA/hora.txt"));
+}
+
+function getCancelaBAtual(){
+    return(file_get_contents("api/files/CancelaB/valor.txt"));
+}
+
+function getCancelaBNome(){
+    return(file_get_contents("api/files/CancelaB/nome.txt"));
+}
+
+function getCancelaBHora(){
+    return(file_get_contents("api/files/CancelaB/hora.txt"));
 }
 
 function getAuto($valor){

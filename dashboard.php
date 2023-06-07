@@ -51,8 +51,34 @@
         $humidade_foto="imagens/humidity-low.png";
         $humidade_cor="sensor-green";
     }
-
-
+    $cancelaA_nome=getCancelaANome();
+    $cancelaA_hora=getCancelaAHora();
+    $cancelaA_valor=getCancelaAAtual();
+    if($cancelaA_valor==ATIVADO){
+        $cancelaA_cor="sensor-green";
+        $cancelaA_foto="imagens/cancela_open.png";
+        $cancelaA_estado="Aberta";
+        $cancelaA_classe="success";
+    }else{
+        $cancelaA_cor="sensor-red";
+        $cancelaA_foto="imagens/cancela_closed.png";
+        $cancelaA_estado="Fechada";
+        $cancelaA_classe="danger";
+    }
+    $cancelaB_nome=getCancelaBNome();
+    $cancelaB_hora=getCancelaBHora();
+    $cancelaB_valor=getCancelaBAtual();
+    if($cancelaB_valor==ATIVADO){
+        $cancelaB_cor="sensor-green";
+        $cancelaB_foto="imagens/cancela_open.png";
+        $cancelaB_estado="Aberta";
+        $cancelaB_classe="success";
+    }else{
+        $cancelaB_cor="sensor-red";
+        $cancelaB_foto="imagens/cancela_closed.png";
+        $cancelaB_estado="Fechada";
+        $cancelaB_classe="danger";
+    }
 
     //lógica para definir qual imagem//cor sar para os veiculos
     $percentagem=$veiculo_quant/VEICULO_MAX;
@@ -141,7 +167,7 @@
     <title>Plataforma IoT</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="css/dashboardStyle.css">
-      <meta http-equiv="refresh" content="5">
+
 </head>
   <body class="body-park">
     <div class="container card-theme">
@@ -276,6 +302,34 @@
                     <div class="card-footer">
                         <!--<a href="api/auto.php?id=3" class="btn btn-<?php echo($auto_class3);?>">Modo Auto: <?php echo $auto_text3 ?></a>-->
                         <a href="<?php if($perms==0){ echo 'api/changeLuzes.php?id=3';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($luzes_classe3);?>"><?php echo $luzes_estado3 ?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center mt-2">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header <?php echo($cancelaA_cor);?>">
+                        <h2><?php echo($cancelaA_nome.": ".$cancelaA_estado)?></h2>
+                    </div>
+                    <div class="card-body">
+                        <img class="align-center photo" src="<?php echo($cancelaA_foto);?>" alt="LED">
+                    </div>
+                    <div class="card-footer">
+                        <a href="<?php if($perms==0){ echo 'api/changeCancela.php?id=1';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($cancelaA_classe);?>"><?php echo $cancelaA_estado ?></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header <?php echo($cancelaB_cor);?>">
+                        <h2><?php echo($cancelaB_nome.": ".$cancelaB_estado)?></h2>
+                    </div>
+                    <div class="card-body">
+                        <img class="align-center photo" src="<?php echo($cancelaB_foto);?>" alt="LED">
+                    </div>
+                    <div class="card-footer">
+                        <a href="<?php if($perms==0){ echo 'api/changeCancela.php?id=2';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($cancelaB_classe);?>"><?php echo $cancelaB_estado ?></a>
                     </div>
                 </div>
             </div>

@@ -53,6 +53,8 @@ if(!isset($_GET['log'])){
                                 <a class="nav-link" aria-current="page" href="#veiculos">Veiculos</a>
                                 <a class="nav-link" aria-current="page" href="#temperatura">Temperatura</a>
                                 <a class="nav-link" aria-current="page" href="#humidade">Humidade</a>
+                                <a class="nav-link" aria-current="page" href="#cancelaa">CancelaA</a>
+                                <a class="nav-link" aria-current="page" href="#cancelab">CancelaB</a>
                              ';
                         }
                         ?>
@@ -289,7 +291,7 @@ if(!isset($_GET['log'])){
                 if ($aux == HUMIDADE || $aux == TODOS) {
                     $log = getTemperaturaLog();
                     if($log!=null){
-                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="temperatura">Temperatura</a></h5>');
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="humidade">Humidade</a></h5>');
 
                         echo('<table class="table">
                                   <thead>
@@ -312,6 +314,86 @@ if(!isset($_GET['log'])){
                                 break;
                             }
                             print('<tr><td>' . $l[0] . '</td><td>' . $l[1] . '</td></tr>');
+                        }
+
+                        echo('</tbody></table>');
+                        echo('</div></div>');
+                    }
+                }
+                if ($aux == CANCELAA || $aux == TODOS) {
+                    $log = getCancelaALog();
+                    if($log!=null){
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="cancelaa">CancelaA</a></h5>');
+
+                        echo('<table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Data/Hora</th>
+                                      <th>Estado</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>');
+
+                        foreach ($log as $l) {
+                            $log_A[] = explode(";", $l);
+                        }
+                        //verificar a length do array
+                        $count = count($log_A);
+
+                        foreach ($log_A as $l) {
+                            //se for o último elemento, sai
+                            if (--$count <= 0) {
+                                break;
+                            }
+                            echo('<tr>
+                                  <td>' . $l[0] . '</td>
+                                  <td>');
+                            if ($l[1] == "1") {
+                                echo '<span class="nav-pill nav-pill-success">Ativado</span>';
+                            } else {
+                                echo '<span class="nav-pill nav-pill-danger">Desativado</span>';
+                            }
+                            echo('</td></tr>');
+                        }
+
+                        echo('</tbody></table>');
+                        echo('</div></div>');
+                    }
+                }
+                if ($aux == CANCELAB || $aux == TODOS) {
+                    $log = getCancelaBLog();
+                    if($log!=null){
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="cancelab">CancelaB</a></h5>');
+
+                        echo('<table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Data/Hora</th>
+                                      <th>Estado</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>');
+
+                        foreach ($log as $l) {
+                            $log_B[] = explode(";", $l);
+                        }
+                        //verificar a length do array
+                        $count = count($log_B);
+
+                        foreach ($log_B as $l) {
+                            //se for o último elemento, sai
+                            if (--$count <= 0) {
+                                break;
+                            }
+                            echo('<tr>
+                                  <td>' . $l[0] . '</td>
+                                  <td>');
+                            if ($l[1] == "1") {
+                                echo '<span class="nav-pill nav-pill-success">Ativado</span>';
+                            } else {
+                                echo '<span class="nav-pill nav-pill-danger">Desativado</span>';
+                            }
+                            echo('</td></tr>');
                         }
 
                         echo('</tbody></table>');
