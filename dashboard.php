@@ -29,6 +29,15 @@
     $auto=getAuto(0);
     $auto2=getAuto(2);
     $auto3=getAuto(3);
+    $temperatura_nome=getTemperaturaNome();
+    $temperatura_hora=getTemperaturaHora();
+    $temperatura_valor=getTemperaturaAtual();
+    if($temperatura_valor>=65){
+        $temperatura_foto="imagens/humidity-high.png";
+    }else{
+        $temperatura_foto="imagens/humidity-low.png";
+    }
+
 
     //lógica para definir qual imagem//cor sar para os veiculos
     $percentagem=$veiculo_quant/VEICULO_MAX;
@@ -181,7 +190,22 @@
                       </div>
                   </div>
             </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h2><?php echo($temperatura_nome.": ".$temperatura_valor."ºC")?></h2>
+                    </div>
+                    <div class="card-body">
+                        <img class="align-center photo" src="<?php echo($temperatura_foto);?>" alt="LED">
+                    </div>
+                    <div class="card-footer">
+                        <b>Atualização:</b> <?php echo $temperatura_hora; ?> - <a href="historico.php?log=<?php echo TEMPERATURA ;?>">Histórico</a>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
         <div class="row text-center mt-2">
             <div class="col-sm-4">
                 <div class="card">

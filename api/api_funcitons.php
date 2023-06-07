@@ -10,6 +10,8 @@ const CONTADOR=2;
 const LUZES=3;
 const TODOS=4;
 
+const TEMPERATURA=5;
+
 //função para ver se o nome é valido
 function existe($nome){
     if(strcmp($nome,"Luzes")==0){
@@ -17,6 +19,12 @@ function existe($nome){
     }elseif(strcmp($nome,"Fotos")==0){
         return 1;
     }elseif(strcmp($nome,"Veiculos")==0){
+        return 1;
+    }elseif(strcmp($nome,"Luzes2")==0){
+        return 1;
+    }elseif(strcmp($nome,"Luzes3")==0){
+        return 1;
+    }elseif(strcmp($nome,"Temperatura")==0){
         return 1;
     }else{
         return 0;
@@ -62,6 +70,10 @@ function getVeiculoNome(){
 //função para buscar o log da ultima atualização dos veiculos
 function getVeiculoLog(){
     return(explode("\n",file_get_contents("api/files/Veiculos/log.txt")));
+}
+
+function getTemperaturaLog(){
+    return(explode("\n",file_get_contents("api/files/Temperatura/log.txt")));
 }
 
 //função para buscar o estado das Luzes
@@ -122,6 +134,18 @@ function getFotosNome(){
 }
 function getFotosLog(){
     return(explode("\n",file_get_contents("api/files/Fotos/log.txt")));
+}
+
+function getTemperaturaAtual(){
+    return(file_get_contents("api/files/Temperatura/valor.txt"));
+}
+
+function getTemperaturaNome(){
+    return(file_get_contents("api/files/Temperatura/nome.txt"));
+}
+
+function getTemperaturaHora(){
+    return(file_get_contents("api/files/Temperatura/hora.txt"));
 }
 
 function getAuto($valor){

@@ -44,11 +44,17 @@ if(!isset($_GET['log'])){
                     <div class="navbar-nav">
                         <a class="nav-link" href="dashboard.php">Home</a>
                         <a class="nav-link active" aria-current="page" href="#">Histórico</a>
-                        <a class="nav-link" aria-current="page" href="#Fotos">Fotos</a>
-                        <a class="nav-link" aria-current="page" href="#Luzes">Luzes1</a>
-                        <a class="nav-link" aria-current="page" href="#Luzes2">Luzes2</a>
-                        <a class="nav-link" aria-current="page" href="#Luzes3">Luzes3</a>
-                        <a class="nav-link" aria-current="page" href="#veiculos">Veiculos</a>
+                        <?php if($aux == TODOS) {
+                            echo '
+                                <a class="nav-link" aria-current="page" href="#Fotos">Fotos</a>
+                                <a class="nav-link" aria-current="page" href="#Luzes">Luzes1</a>
+                                <a class="nav-link" aria-current="page" href="#Luzes2">Luzes2</a>
+                                <a class="nav-link" aria-current="page" href="#Luzes3">Luzes3</a>
+                                <a class="nav-link" aria-current="page" href="#veiculos">Veiculos</a>
+                                <a class="nav-link" aria-current="page" href="#temperatura">Temperatura</a>
+                             ';
+                        }
+                        ?>
                     </div>
                     <div class="w-100 text-end">
                         <button class="btn btn-outline-danger" onclick="window.location.replace('logout.php');">
@@ -228,19 +234,51 @@ if(!isset($_GET['log'])){
                                     </tr>
                                   </thead>
                                   <tbody>');
-                        
+
                         foreach ($log as $l) {
-                                $log_veiculos[] = explode(";", $l);
+                            $log_veiculos[] = explode(";", $l);
                         }
                         //verificar a length do array
                         $count = count($log_veiculos);
-                        
+
                         foreach ($log_veiculos as $l) {
                             //se for o último elemento, sai
                             if (--$count <= 0) {
                                 break;
                             }
-                           print('<tr><td>' . $l[0] . '</td><td>' . $l[1] . '</td></tr>');
+                            print('<tr><td>' . $l[0] . '</td><td>' . $l[1] . '</td></tr>');
+                        }
+
+                        echo('</tbody></table>');
+                        echo('</div></div>');
+                    }
+                }
+                if ($aux == TEMPERATURA || $aux == TODOS) {
+                    $log = getTemperaturaLog();
+                    if($log!=null){
+                        echo('<div class="card card-theme mt-2 mb-2"><div class="card-body"><h5><a id="temperatura">Temperatura</a></h5>');
+
+                        echo('<table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Data/Hora</th>
+                                      <th>Temperatura</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>');
+
+                        foreach ($log as $l) {
+                            $log_temperatura[] = explode(";", $l);
+                        }
+                        //verificar a length do array
+                        $count = count($log_temperatura);
+
+                        foreach ($log_temperatura as $l) {
+                            //se for o último elemento, sai
+                            if (--$count <= 0) {
+                                break;
+                            }
+                            print('<tr><td>' . $l[0] . '</td><td>' . $l[1] . '</td></tr>');
                         }
 
                         echo('</tbody></table>');
