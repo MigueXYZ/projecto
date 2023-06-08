@@ -270,7 +270,7 @@
                         <img class="align-center photo" src="<?php echo($cancelaA_foto);?>" alt="LED">
                     </div>
                     <div class="card-footer">
-                        <a href="<?php if($perms==0){ echo 'api/changeCancela.php?id=1';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($cancelaA_classe);?>"><?php echo $cancelaA_estado ?></a>
+                        <b>Atualização:</b> <?php echo $cancelaA_hora; ?><?php if($perms!=2){ echo ' - <a href="historico.php?log='. CANCELAA.'">Histórico</a>';}?>
                     </div>
                 </div>
             </div>
@@ -283,7 +283,7 @@
                         <img class="align-center photo" src="<?php echo($cancelaB_foto);?>" alt="LED">
                     </div>
                     <div class="card-footer">
-                        <a href="<?php if($perms==0){ echo 'api/changeCancela.php?id=2';}?>" <?php if($perms!=0){ echo 'disabled';}?> class="btn btn-<?php echo($cancelaB_classe);?>"><?php echo $cancelaB_estado ?></a>
+                        <b>Atualização:</b> <?php echo $cancelaB_hora; ?><?php if($perms!=2){ echo ' - <a href="historico.php?log='. CANCELAB.'">Histórico</a>';}?>
                     </div>
                 </div>
             </div>
