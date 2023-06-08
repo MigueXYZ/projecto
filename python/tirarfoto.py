@@ -38,7 +38,7 @@ try:
         l = requests.get(url2,parametros2)
         l = l.text
         print(valor)
-        if (float(valor)!=float(valor_dif)): #só tira a foto se os valores da porta forem 1 e -1
+        if (float(valor)!=float(valor_dif)): #só tira a foto se os valores forem diferentes
             valor_dif = valor
             print("Porta: "+valor)
             tirarFoto() # tira a foto
