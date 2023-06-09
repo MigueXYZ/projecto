@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo file_put_contents("api/files/Fotos/valor.txt", $imagem['name']);
         echo file_put_contents("api/files/Fotos/hora.txt", $date);
-        $data = $date . " " . $imagem['name']. PHP_EOL;
+        $data = $date . ";" . $imagem['name']. PHP_EOL;
         $data .= file_get_contents("api/files/Fotos/log.txt");
         echo file_put_contents("api/files/Fotos/log.txt", $data);
 
