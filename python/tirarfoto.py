@@ -35,8 +35,7 @@ try:
         r = requests.get("http://localhost/projeto/api/api.php?nome=Veiculos") #vai buscar os ficheiros a api
         valor = r.text.strip()        
         time.sleep(2)
-        l = requests.get(url2,parametros2)
-        l = l.text
+
         print(valor)
         if (float(valor)!=float(valor_dif)): #só tira a foto se os valores forem diferentes
             valor_dif = valor
