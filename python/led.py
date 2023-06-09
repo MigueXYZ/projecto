@@ -19,14 +19,14 @@ def post2API(nome,valor):
     print(agora.strftime("%y-%m-%d %H:%M:%S"))
     payload={'nome':nome,'valor':valor,'hora':agora.strftime("%y-%m-%d %H:%M:%S")}
     print(payload)
-    requests.post('http://'+ip+'/projeto/projecto/api/api.php', data=payload)
+    requests.post('http://'+ip+'/projeto/api/api.php', data=payload)
 
 
 try:
     while True:
         now = datetime.datetime.now()
         params={"nome":"Luzes"}
-        i=requests.get("http://"+ip+"/projeto/projecto/api/api.php",params)
+        i=requests.get("http://"+ip+"/projeto/api/api.php",params)
         i=i.text
         if float(i) == 1:
             post2API("Luzes",1)
@@ -35,7 +35,7 @@ try:
             post2API("Luzes",0)
             GPIO.output(channel,GPIO.LOW)
         params={"nome":"Luzes2"}
-        i=requests.get("http://"+ip+"/projeto/projecto/api/api.php",params)
+        i=requests.get("http://"+ip+"/projeto/api/api.php",params)
         i=i.text
         if float(i) == 1:
             post2API("Luzes2",1)
@@ -44,7 +44,7 @@ try:
             post2API("Luzes2",0)
             GPIO.output(channel,GPIO.LOW)
         params={"nome":"Luzes3"}
-        i=requests.get("http://"+ip+"/projeto/projecto/api/api.php",params)
+        i=requests.get("http://"+ip+"/projeto/api/api.php",params)
         i=i.text
         if float(i) == 1:
             post2API("Luzes3",1)

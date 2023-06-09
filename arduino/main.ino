@@ -110,7 +110,7 @@ void loop() {
 
 void post2API(String sendName, String sendValue, String sendTime){
 
-  String URLPath = "/projeto/projecto/api/api.php";
+  String URLPath = "/projeto/api/api.php";
   String contentType = "application/x-www-form-urlencoded";
 
 
