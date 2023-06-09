@@ -12,7 +12,7 @@ def tirarFoto():
     ret, image = camera.read()
     print ("Resultado da Camera=" + str(ret)) #printa o resultado
     cv2.imwrite('opencv_image.png', image) #escreve a imagem
-    camera.release() #solta a camara
+    camera.release() #solta a camaraz
     cv2.destroyAllWindows() #destroi todas as janelas
     return
 def sendFile(imagem):

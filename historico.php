@@ -43,7 +43,6 @@ if(!isset($_GET['log'])){
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link" href="dashboard.php">Home</a>
-                        <a class="nav-link active" aria-current="page" href="#">Histórico</a>
                         <?php if($aux == TODOS) {
                             echo '
                                 <a class="nav-link" aria-current="page" href="#Fotos">Fotos</a>

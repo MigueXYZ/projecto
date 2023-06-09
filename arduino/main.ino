@@ -69,8 +69,8 @@ void loop() {
   //define variaveis que armazenam a temperatura, humidade e estado dos botões
   float temp = dht.readTemperature();
   float hum = dht.readHumidity();
-  BotaoA_Estado=digitalRead(BotaoA_Pin);
-  BotaoB_Estado=digitalRead(BotaoB_Pin);
+  int BotaoA_Estado=digitalRead(BotaoA_Pin);
+  int BotaoB_Estado=digitalRead(BotaoB_Pin);
 
     //atualiza a hora apos leitura
     char datahora[20];
