@@ -45,7 +45,7 @@ try:
             img = cv2.imread('opencv_image.png', 0) #carrega a imagem de um ficheiro especifico e o devolve para a variavel img
             cv2.destroyAllWindows() #destroi todas as janelas
             sendFile(img) # manda a imagem
-            time.sleep(5)
+        time.sleep(5)
 except KeyboardInterrupt: # caso haja interrupção de teclado CTRL+C
     print( "Programa terminado pelo utilizador")
 
