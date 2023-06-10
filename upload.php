@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_FILES['imagem'])) {
         if ($_FILES['imagem']['size'] > 1000000) {//se a imagem passar 1000KB
-            throw new RuntimeException('Exceeded filesize limit.');
+            throw new RuntimeException('Too big fella');
         }else{
             $type=$_FILES[ 'imagem' ][ 'type' ];
             $extensions=array( 'image/jpeg', 'image/png');
@@ -37,21 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-} elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
-
-    $valores = array(//transformação para um array
-        'nome' => file_get_contents("api/files/Fotos/nome.txt"),
-        'valor' => file_get_contents("api/files/Fotos/valor.txt"),
-        'hora' => file_get_contents("api/files/Fotos/hora.txt"),
-        'tirar' => file_get_contents("api/files/Fotos/tirar.txt"),
-        'log' => file_get_contents("api/files/Fotos//log.txt"),
-    );
-    echo json_encode($valores); //retorna uma string contendo a representação do json
-
-
-} else {
-    echo "Metodo nao permitido";
-    exit();
 }
 
 ?>

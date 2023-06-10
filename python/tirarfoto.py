@@ -4,7 +4,7 @@ import sys
 import time
 import requests
 
-url= "http://localhost/projeto/upload.php"
+url= "http://10.79.12.175/projeto/upload.php"
 def tirarFoto():
     camera = cv2.VideoCapture(0, cv2.CAP_DSHOW) # captura a imagem usando a camara
     ret, image = camera.read()
@@ -30,7 +30,7 @@ try:
     while i:
         parametros={"nome":"Veiculos"}
         parametros2 = {"nome": "Fotos"}
-        r = requests.get("http://localhost/projeto/api/api.php?nome=Veiculos") #vai buscar os ficheiros a api
+        r = requests.get("http://10.79.12.175/projeto/api/api.php?nome=Veiculos") #vai buscar os ficheiros a api
         valor = r.text.strip()        
         time.sleep(2)
         print(valor)

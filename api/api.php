@@ -13,7 +13,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             $nome=$_POST['nome'];
             if(!isset($_POST['hora'])){
                 $hora=date('Y-m-d H:i:s');
+            }else{
+                $hora=$_POST['hora'];
             }
+
             if($teste==1 && isset($_POST['valor'])  ){
                 $valor=$_POST['valor'];
                 if(strcmp($nome,"Veiculos")==0){
